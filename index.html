@@ -1,7 +1,100 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- ... (rest of the head remains the same) ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrousel d'Images GitHub</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        .carousel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+        }
+        .image-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .thumbnails-wrapper {
+            position: relative; /* Pour positionner les flèches */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            overflow-x: auto;
+            padding: 10px 40px; /* Espace pour les flèches */
+        }
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 0 5px;
+            opacity: 0.6;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            flex: 0 0 auto; /* Empêcher le redimensionnement automatique */
+        }
+        .thumbnail.active {
+            opacity: 1;
+            border: 2px solid #4285f4;
+        }
+        .thumbnail:hover {
+            opacity: 0.8;
+        }
+        .nav-button-thumbnails {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255,255,255,0.8);
+            color: black;
+            border: none;
+            font-size: 1.5rem;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        #prevThumbnails {
+            left: 0;
+        }
+        #nextThumbnails {
+            right: 0;
+        }
+        @media (max-width: 600px) {
+            .thumbnail {
+                width: 60px;
+                height: 60px;
+                margin: 0 3px;
+            }
+            .nav-button-thumbnails {
+                font-size: 1.2rem;
+                padding: 5px;
+            }
+        }
+        /* ... (le reste du CSS reste inchangé) ... */
+    </style>
 </head>
 <body>
     <div class="carousel-container">
@@ -19,68 +112,15 @@
         </div>
     </div>
     
-    <!-- ... (rest of the fullscreen section remains the same) ... -->
-
-    <style>
-        /* ... (existing styles remain the same) ... */
-        
-        /* Nouveaux styles pour les boutons de navigation des vignettes */
-        .nav-button-thumbnails {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255,255,255,0.8);
-            color: black;
-            border: none;
-            font-size: 1.5rem;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        #prevThumbnails {
-            left: 0;
-        }
-
-        #nextThumbnails {
-            right: 0;
-        }
-
-        .thumbnails-wrapper {
-            position: relative; /* Pour positionner les boutons */
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 10px 40px; /* Espace pour les flèches */
-        }
-
-        .thumbnail {
-            flex: 0 0 auto; /* Empêcher le redimensionnement automatique */
-            margin: 5px;
-        }
-
-        @media (max-width: 600px) {
-            .thumbnail {
-                width: 50px;
-                height: 50px;
-                margin: 3px;
-            }
-            
-            .nav-button-thumbnails {
-                font-size: 1.2rem;
-                padding: 5px;
-            }
-        }
-    </style>
-
     <script>
-        // ... (existing JavaScript remains the same) ...
-        
         // Fonction pour faire défiler les vignettes
         function scrollThumbnails(direction) {
             const thumbnailsWrapper = document.getElementById('thumbnailsWrapper');
             const scrollAmount = thumbnailsWrapper.offsetWidth / 2 * direction;
-            thumbnailsWrapper.scrollBy({left: scrollAmount, behavior: 'smooth'});
+            thumbnailsWrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
+
+        // ... (le reste du JavaScript reste inchangé) ...
     </script>
 </body>
 </html>
